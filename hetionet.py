@@ -5,16 +5,20 @@ Created on Wed Mar 25 21:08:32 2020
 @author: mehra
 """
 
-from lib import diseaseInfo
+from lib import diseaseDb
 
 MESSAGE = '\nWelcome to HetioNet!'
+
 OPTIONS = '''
 Options:
     [1] Info about a disease
     [2] Treatment options for a new disease
     [3] Exit
 '''
-
+OPTIONS2 = '''
+Options:
+    [Enter] Return to main menu
+'''
 print(MESSAGE)
 while True:
     print(OPTIONS)
@@ -29,7 +33,8 @@ while True:
             print('Input must be an integer.')
         
     if state == 1:
-        diseaseInfo.getDiseaseById()
+        database = diseaseDb.DiseaseDb()
+        input(OPTIONS2)
     elif state == 2:
         print('[2] Treatment options for a new disease')
     else:
