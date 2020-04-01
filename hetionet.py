@@ -7,8 +7,10 @@ Created on Wed Mar 25 21:08:32 2020
 
 from lib import diseaseDb
 
-MESSAGE = '\nWelcome to HetioNet!'
+FILE_1_DIR = './data/nodes.tsv'
+FILE_2_DIR = './data/file2'
 
+MESSAGE = '\nWelcome to HetioNet!'
 OPTIONS = '''
 Options:
     [1] Info about a disease
@@ -19,6 +21,8 @@ OPTIONS2 = '''
 Options:
     [Enter] Return to main menu
 '''
+
+
 print(MESSAGE)
 while True:
     print(OPTIONS)
@@ -33,8 +37,8 @@ while True:
             print('Input must be an integer.')
         
     if state == 1:
-        database = diseaseDb.DiseaseDb()
-        input(OPTIONS2)
+        db = diseaseDb.DiseaseDb()
+        db.loadDataFromCSV(FILE_1_DIR)
     elif state == 2:
         print('[2] Treatment options for a new disease')
     else:
