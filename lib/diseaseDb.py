@@ -14,8 +14,19 @@ from pymongo import MongoClient
 class DiseaseDb:
     def __init__(self):
         self.client = MongoClient()
-        self.db = self.client['hetionet']
+        self.client.drop_database('hetionet_mhafiz')
+        self.db = self.client['hetionet_mhafiz']
         
+    def find(self, disease_id):
+        nodes = self.db['nodes'] # the collection
+        disease = nodes.find_one({'id': disease_id})
+        
+        # Check if disease in collection
+        if disease:
+            return disease
+        else:
+            return None
+    
     def loadDataFromTSV(self, filesrc1, filesrc2):
         nodes = self.db['nodes'] # the collection
         
@@ -50,10 +61,10 @@ class DiseaseDb:
                 disease_id = row['target']
                 disease = nodes_dict[disease_id]
                 
-                if 'treats' in disease:
-                    disease['treats'].append(compound['name'])
+                if 'treatments' in disease:
+                    disease['treatments'].append(compound['name'])
                 else:
-                    disease['treats'] = [compound['name']]
+                    disease['treatments'] = [compound['name']]
                     
             if row['metaedge'] == 'CpD':
                 # add compound to disease
@@ -62,10 +73,10 @@ class DiseaseDb:
                 disease_id = row['target']
                 disease = nodes_dict[disease_id]
                 
-                if 'palliates' in disease:
-                    disease['palliates'].append(compound['name'])
+                if 'palliatives' in disease:
+                    disease['palliatives'].append(compound['name'])
                 else:
-                    disease['palliates'] = [compound['name']]
+                    disease['palliatives'] = [compound['name']]
                     
             if row['metaedge'] in {'DuG', 'DaG', 'DdG'}:
                 # add gene to disease
