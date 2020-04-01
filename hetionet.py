@@ -7,8 +7,8 @@ Created on Wed Mar 25 21:08:32 2020
 
 from lib import diseaseDb
 
-FILE_1_DIR = './data/nodes.tsv'
-FILE_2_DIR = './data/file2'
+FILE1_DIR = './data/nodes.tsv'
+FILE2_DIR = './data/edges.tsv'
 
 MESSAGE = '\nWelcome to HetioNet!'
 OPTIONS = '''
@@ -38,7 +38,7 @@ while True:
         
     if state == 1:
         db = diseaseDb.DiseaseDb()
-        db.loadDataFromCSV(FILE_1_DIR)
+        db.loadDataFromTSV(FILE1_DIR, FILE2_DIR)
     elif state == 2:
         print('[2] Treatment options for a new disease')
     else:
