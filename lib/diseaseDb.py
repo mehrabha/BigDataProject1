@@ -26,6 +26,33 @@ class DiseaseDb:
             return disease
         else:
             return None
+        
+    def printInfo(self, disease):
+        print('\nInfo about disease with ID: ' + disease['id'])
+        print('    Name: ' + disease['name'])
+        
+        if 'treatments' in disease:
+            # Treatments found
+            print('    Treatments:')
+            for treatment in disease['treatments']:
+                print('      - ', treatment)
+                
+        if 'palliatives' in disease:
+            # Palliatives found
+            print('    Palliatives:')
+            for palliative in disease['palliatives']:
+                print('      - ', palliative)
+                
+        if 'anatomy' in disease:
+            # Palliatives found
+            print('    Localizes:')
+            for anatomy in disease['anatomy']:
+                print('      - ', anatomy)                
+
+        if 'genes' in disease:
+            print('    Genes:')
+            for gene in disease['genes']:
+                print('      - ', gene)
     
     def loadDataFromTSV(self, filesrc1, filesrc2):
         nodes = self.db['nodes'] # the collection
