@@ -16,6 +16,9 @@ class DiseaseDb:
         self.client = MongoClient()
         self.client.drop_database('hetionet_mhafiz')
         self.db = self.client['hetionet_mhafiz']
+    
+    def __del__(self):
+        self.client.drop_database('hetionet_mhafiz')
         
     def find(self, disease_id):
         nodes = self.db['nodes'] # the collection
