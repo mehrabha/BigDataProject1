@@ -13,12 +13,16 @@ from pymongo import MongoClient
 
 class DiseaseDb:
     def __init__(self):
+        print('Initializing Database', end = '')
         self.client = MongoClient()
         self.client.drop_database('hetionet_mhafiz')
         self.db = self.client['hetionet_mhafiz']
+        print('DONE', end = '\n\n')
     
     def __del__(self):
+        print('Cleaning up database', end = '')
         self.client.drop_database('hetionet_mhafiz')
+        print('DONE', end = '\n\n')
         
     def find(self, disease_id):
         nodes = self.db['nodes'] # the collection
@@ -74,7 +78,6 @@ class DiseaseDb:
         print('Reading edges.tsv...', end = '')
         infile2 = open(filesrc2)
         edges_dict = csv.DictReader(infile2, dialect='excel-tab')
-        #infile2.close()
         print('DONE', end = '\n\n')
         
         

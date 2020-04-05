@@ -5,7 +5,7 @@ Created on Wed Mar 25 21:08:32 2020
 @author: mehra
 """
 
-from lib import diseaseDb
+from lib import diseaseDb, graphDb
 
 FILE1_DIR = './data/nodes.tsv'
 FILE2_DIR = './data/edges.tsv'
@@ -56,7 +56,13 @@ while True:
         del db
         
     elif state == '2':
-        print('[2] Treatment options for a new disease')
+        searching = '1'
+        db = graphDb.GraphDb()
+        db.loadDataFromTSV(FILE1_DIR, FILE2_DIR)
+        
+        while searching == '1':
+            disease_id = input('Enter disease ID: ')
+        #del db
     else:
         print('[3] Exit')
         print('Thank you for using HetioNet!')
