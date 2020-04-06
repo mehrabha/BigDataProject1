@@ -16,7 +16,7 @@ Requirements:
 Prerequisite checks:
 - ./data/ contains nodes.tsv and edges.tsv files
 - Mongodb service is running at default port
-- Neo4j service is running at default port
+- Neo4j service is running at default port (7687)
 - Read/Write access to data files
 
 To start, simply open a terminal in the base project directory and run command:
