@@ -60,7 +60,7 @@ while True:
     elif state == '2':
         searching = '1'
         db = graphDb.GraphDb()
-        #db.loadDataFromTSV(FILE1_DIR, FILE2_DIR)
+        db.loadDataFromTSV(FILE1_DIR, FILE2_DIR)
         
         while searching == '1':
             disease_id = input('Enter disease ID: ')
@@ -68,7 +68,7 @@ while True:
             input('Press [ENTER] to continue...')
             print(OPTIONS2)
             searching = input('Select: ')
-        #del db
+        del db
     else:
         print('[3] Exit')
         print('Thank you for using HetioNet!')

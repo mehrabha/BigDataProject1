@@ -11,12 +11,12 @@ class GraphDb:
     def __init__(self):
         print('Initializing Database at port 7687...', end = '')
         self.db = Graph()
-        #self.db.delete_all()
+        self.db.delete_all()
         print('DONE', end = '\n\n')
     
     def __del__(self):
         print('Cleaning up database...', end = '')
-        #self.db.delete_all()
+        self.db.delete_all()
         print('DONE', end = '\n\n')
         
     def newTreatments(self, diseaseID):
