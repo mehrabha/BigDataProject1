@@ -12,3 +12,7 @@ CREATE_EDGE_QUERY = '''
     WHERE a.iden = "%s" AND b.iden = "%s"
     CREATE (a)-[:%s]->(b)
 '''
+
+DISCOVER_QUERY = '''
+
+'''

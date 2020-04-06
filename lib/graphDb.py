@@ -2,7 +2,7 @@ import csv
 from lib import queries
 from py2neo import Graph, Node, Relationship
 
-translator = {'C': 'Compund',
+translator = {'C': 'Compound',
               'D': 'Disease',
               'G': 'Gene',
               'A': 'Anatomy'}
@@ -16,7 +16,7 @@ class GraphDb:
     
     def __del__(self):
         print('Cleaning up database...', end = '')
-        self.db.delete_all()
+        #self.db.delete_all()
         print('DONE', end = '\n\n')
         
     def loadDataFromTSV(self, filesrc1, filesrc2):
@@ -62,9 +62,14 @@ class GraphDb:
         # create edges and add to graph
         i = 0
         added = 0
+        discarded = 0
         print('Adding edges...')
         for row in edges_dict:
             edge = row['metaedge']
+            
+            if len(edge) > 3:
+                edge = 'GgG'
+            
             a_iden = row['source']
             a_kind = translator[edge[0]]
             b_iden = row['target']
@@ -76,12 +81,15 @@ class GraphDb:
                                                 a_iden, 
                                                 b_iden, 
                                                 edge)
-            db.run(query)
-            added += 1
-            
-            # Print progress
-            i += 1
-            if i > 999:
-                print('Adding edges...' + str(added) + ' added')
+            if edge in {'CrC', 'DlA', 'CuG', 'CdG', 'AuG', 'AdG', 'CtD'}:
+                db.run(query)
+                added += 1
+                i += 1
+            else:
+                discarded += 1
+                
+            if i > 1999:
+                print('Adding edges...' + str(added) + ' added', end = ', ')
+                print(str(discarded) + ' discarded')
                 i = 0
         print('\n' + str(added) + ' edges added\n')    

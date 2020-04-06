@@ -18,7 +18,7 @@ Options:
 '''
 OPTIONS2 = '''
 Options:
-   [1] Find info about another disease
+   [1] Look up another disease
    [2] Return to main menu
 '''
 
@@ -44,11 +44,13 @@ while True:
             if disease:
                 # Disease found
                 db.printInfo(disease)
+                input('Press [ENTER] to continue...')
                 print(OPTIONS2)
                 searching = input('Select: ')
             else:
                 print('Disease with ID:', end = ' ')
                 print(disease_id + ' not found in database')
+                input('Press [ENTER] to continue...')
                 print(OPTIONS2)
                 searching = input('Select: ')
                 
@@ -58,10 +60,13 @@ while True:
     elif state == '2':
         searching = '1'
         db = graphDb.GraphDb()
-        db.loadDataFromTSV(FILE1_DIR, FILE2_DIR)
+        #db.loadDataFromTSV(FILE1_DIR, FILE2_DIR)
         
         while searching == '1':
             disease_id = input('Enter disease ID: ')
+            input('Press [ENTER] to continue...')
+            print(OPTIONS2)
+            searching = input('Select: ')
         #del db
     else:
         print('[3] Exit')
