@@ -64,6 +64,7 @@ while True:
         
         while searching == '1':
             disease_id = input('Enter disease ID: ')
+            db.newTreatments(disease_id)
             input('Press [ENTER] to continue...')
             print(OPTIONS2)
             searching = input('Select: ')

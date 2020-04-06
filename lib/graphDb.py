@@ -19,6 +19,20 @@ class GraphDb:
         #self.db.delete_all()
         print('DONE', end = '\n\n')
         
+    def newTreatments(self, diseaseID):
+        db = self.db
+        print('Running query...', end = '')
+        query = queries.DISCOVER_QUERY % (diseaseID, diseaseID)
+        treatments = db.run(query).data()
+        print('DONE', end = '\n\n')
+        
+        if treatments:
+            print('Suitable drugs found for disease with ID: ', diseaseID)
+            for treatment in treatments:
+                print('    - ' + treatment['c.name'])
+        else:
+            print('No suitable drugs found for disease with ID: ', diseaseID)
+        
     def loadDataFromTSV(self, filesrc1, filesrc2):
         db = self.db
         # open nodes file and convert to dict

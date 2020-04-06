@@ -35,7 +35,7 @@ class DiseaseDb:
             return None
         
     def printInfo(self, disease):
-        print('\nInfo about disease with ID: ' + disease['id'])
+        print('\nInfo about disease with ID ' + disease['id'] + ':')
         print('    Name: ' + disease['name'])
         
         if 'treatments' in disease:

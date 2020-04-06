@@ -14,5 +14,9 @@ CREATE_EDGE_QUERY = '''
 '''
 
 DISCOVER_QUERY = '''
-
+    MATCH (c:Compound)-[:CuG]->(:Gene)<-[:AdG]-(:Anatomy)<-[:DlA]-(d:Disease {iden: "%s"})
+    WHERE NOT (c)-[:CtD]->(d)
+    MATCH (c:Compound)-[:CdG]->(:Gene)<-[:AuG]-(:Anatomy)<-[:DlA]-(d:Disease {iden: "%s"})
+    WHERE NOT (c)-[:CtD]->(d)
+    RETURN DISTINCT c.name
 '''
