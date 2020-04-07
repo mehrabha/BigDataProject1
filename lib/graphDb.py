@@ -11,10 +11,9 @@ class GraphDb:
     def __init__(self):
         print('Initializing Database at port 7687...', end = '')
         self.db = Graph()
-        self.db.delete_all()
         print('DONE', end = '\n\n')
     
-    def __del__(self):
+    def empty(self):
         print('Cleaning up database...', end = '')
         self.db.delete_all()
         print('DONE', end = '\n\n')
@@ -22,14 +21,24 @@ class GraphDb:
     def newTreatments(self, diseaseID):
         db = self.db
         print('Running query...', end = '')
-        query = queries.DISCOVER_QUERY % (diseaseID, diseaseID)
+        
+        if len(diseaseID) > 0:
+            query = queries.DISCOVER_QUERY % (diseaseID, diseaseID)
+        else:
+            query = queries.DISCOVER_ALL_QUERY
+            
         treatments = db.run(query).data()
         print('DONE', end = '\n\n')
         
         if treatments:
             print('Suitable drugs found for disease with ID: ', diseaseID)
             for treatment in treatments:
-                print('    - ' + treatment['c.name'])
+                if len(diseaseID) > 0:
+                    print('    - ' + treatment['c.name'])
+                else:
+                    # Print treatments with drugs:
+                    print('    - ' + treatment['c.name'], end = ' ')
+                    print('for disease: ' + treatment['d.name'])
         else:
             print('No suitable drugs found for disease with ID: ', diseaseID)
         

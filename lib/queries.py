@@ -20,3 +20,11 @@ DISCOVER_QUERY = '''
     WHERE NOT (c)-[:CtD]->(d)
     RETURN DISTINCT c.name
 '''
+
+DISCOVER_ALL_QUERY = '''
+    MATCH (c:Compound)-[:CuG]->(:Gene)<-[:AdG]-(:Anatomy)<-[:DlA]-(d:Disease)
+    WHERE NOT (c)-[:CtD]->(d)
+    MATCH (c:Compound)-[:CdG]->(:Gene)<-[:AuG]-(:Anatomy)<-[:DlA]-(d:Disease)
+    WHERE NOT (c)-[:CtD]->(d)
+    RETURN DISTINCT c.name, d.name
+'''

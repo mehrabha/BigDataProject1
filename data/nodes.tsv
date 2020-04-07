@@ -401,6 +401,9 @@ Anatomy::UBERON:0004535	cardiovascular system	Anatomy
 Anatomy::UBERON:0004727	cochlear nerve	Anatomy
 Anatomy::UBERON:0004769	diaphysis	Anatomy
 Anatomy::UBERON:0006849	scapula	Anatomy
+Compound::XL00001	MagicpillA	Compound
+Compound::XL00002	MagicpillB	Compound
+Compound::XL00003	MagicpillC	Compound
 Compound::DB00014	Goserelin	Compound
 Compound::DB00035	Desmopressin	Compound
 Compound::DB00050	Cetrorelix	Compound
@@ -1953,6 +1956,7 @@ Compound::DB09018	Bromopride	Compound
 Compound::DB09019	Bromhexine	Compound
 Compound::DB09020	Bisacodyl	Compound
 Compound::DB09028	Cytisine	Compound
+Disease::XLID:00001	COVID-19	Disease
 Disease::DOID:0050156	idiopathic pulmonary fibrosis	Disease
 Disease::DOID:0050425	restless legs syndrome	Disease
 Disease::DOID:0050741	alcohol dependence	Disease
@@ -23035,3 +23039,5 @@ Gene::9992	KCNE2	Gene
 Gene::9993	DGCR2	Gene
 Gene::9994	CASP8AP2	Gene
 Gene::9997	SCO2	Gene
+Gene::10000000	XL1	Gene
+Gene::10000001	XL2	Gene

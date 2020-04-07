@@ -15,11 +15,18 @@ Options:
    [1] Info about a disease
    [2] Treatment options for a new disease
    [3] Exit
+   
 '''
 OPTIONS2 = '''
 Options:
    [1] Look up another disease
    [2] Return to main menu
+'''
+
+OPTIONS3 = '''
+Reload database from files?
+   [1] Yes
+   [2] No
 '''
 
 
@@ -60,7 +67,13 @@ while True:
     elif state == '2':
         searching = '1'
         db = graphDb.GraphDb()
-        db.loadDataFromTSV(FILE1_DIR, FILE2_DIR)
+        
+        print(OPTIONS3)
+        load = input('Select: ')
+        
+        if load == '1':
+            db.empty()
+            db.loadDataFromTSV(FILE1_DIR, FILE2_DIR)
         
         while searching == '1':
             disease_id = input('Enter disease ID: ')
@@ -68,7 +81,6 @@ while True:
             input('Press [ENTER] to continue...')
             print(OPTIONS2)
             searching = input('Select: ')
-        del db
     else:
         print('[3] Exit')
         print('Thank you for using HetioNet!')
